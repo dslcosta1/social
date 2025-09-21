@@ -5,15 +5,18 @@ import (
 	"os"
 
 	"github.com/dslcosta1/social/internal/env"
+	"github.com/dslcosta1/social/internal/env/store"
 )
 
 func main() {
 	cfg := config{
-		addr: env.GetString("ADRR", ":8080"),
+		addr: env.GetString("ADDR", ":8080"),
 	}
+	store := store.NewStorage(nil)
 
 	app := &application{
 		config: cfg,
+		store: store,
 	}
 
 	os.LookupEnv("PATH")
